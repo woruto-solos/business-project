@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Interactive Cube with Three.js</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="ct-header">
+        <div class="ct-container">
+            <a href="#" class="ct-brand">Jumpcut</a>
+            <nav class="ct-nav">
+                <ul class="ct-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </nav>
+            <div class="ct-actions">
+                <a href="#" class="ct-signin">Sign In</a>
+                <a href="#" class="ct-cta">Download</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="ct-hero">
+            <div class="ct-hero-surface">
+                <!-- Container for the 3D canvas -->
+                <div id="canvas-container"></div>
+                <div class="ct-hero-content">
+                    <h1 class="ct-hero-title">
+                        The Future of Editing
+                        <span class="muted">Powered by AI</span>
+                    </h1>
+                    <p class="ct-hero-sub">
+                        Jumpcut is a revolutionary video editor that combines intuitive design with powerful AI to bring your creative vision to life faster than ever.
+                    </p>
+                    <a href="#" class="ct-btn ct-btn--primary">Start Your Free Trial</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="ct-features" id="features">
+            <div class="feature-surface">
+                <div class="feature-content">
+                    <h2>Switch Mode</h2>
+                    <p class="feature-sub">It lets you switch between easy and advanced modes, tailoring the experience to your skill level.</p>
+                    <p class="feature-detail">In easy mode, you get a simplified interface with all the essential tools. Switch to advanced to unlock a full suite of professional-grade features, giving you complete creative control.</p>
+                </div>
+                <div class="feature-demo-container">
+                    <div id="cube-demo-canvas-container"></div>
+                    <div class="demo-controls">
+                        <span>Advanced Mode</span>
+                        <label class="switch">
+                            <input type="checkbox" id="mode-switch">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+                "gsap": "https://unpkg.com/gsap@3.12.5/index.js",
+                "gsap/ScrollTrigger": "https://unpkg.com/gsap@3.12.5/ScrollTrigger.js"
+            }
+        }
+    </script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
