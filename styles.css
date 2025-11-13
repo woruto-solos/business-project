@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 :root {
     /* Updated background to be darker to make the glow pop */
     --bg: #ffffff;
@@ -17,12 +19,13 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
+    scroll-behavior: smooth;
     /* Allow scrolling for the full page */
 }
 
 body {
     margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: var(--text);
     background: var(--bg);    
     min-height: 100vh;
@@ -131,8 +134,8 @@ body {
 
 .ct-cta:hover,
 .ct-cta:focus-visible {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* ===== Responsive ===== */
@@ -227,13 +230,26 @@ body {
 .ct-btn--primary {
     background: linear-gradient(135deg, #2f7cf5, #23B0FF);
     color: #fff;
-    box-shadow: 0 6px 18px rgba(47, 124, 245, 0.3);
+    box-shadow: 0 6px 20px rgba(35, 176, 255, 0.4);
 }
 
 .ct-btn--primary:hover,
 .ct-btn--primary:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(35, 176, 255, 0.5);
+}
+
+/* Secondary button style for replay */
+.ct-btn--secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    border: 1px solid var(--border);
+    box-shadow: none;
+}
+
+.ct-btn--secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-1px);
-    box-shadow: 0 10px 22px rgba(47, 124, 245, .32);
 }
 
 /* ===== Decorative corner cards (pure CSS placeholders) ===== */
@@ -404,20 +420,14 @@ body {
 
 /* ===== Feature Demo ===== */
 .feature-demo-container {
-    margin-top: 0;
-    padding: 0 20px;
-    perspective: 1000px; /* Add perspective for the 3D effect */
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 40px;
 }
 
 #cube-demo-canvas-container {
-    width: 450px;
-    height: 450px;
-    /* The canvas inside will be sized to this container */
+    /* This is no longer needed */
+    display: none;
 }
 
 .demo-controls {
@@ -476,6 +486,10 @@ input:checked + .slider:before {
     transform: translateX(20px);
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 @media (max-width: 960px) {
     .feature-surface {
         grid-template-columns: 1fr;
@@ -489,15 +503,69 @@ input:checked + .slider:before {
     line-height: 1.7;
     max-width: 450px;
 }
+/* ===== Multiplatform Section ===== */
+.ct-multiplatform {
+    padding: 80px 20px; /* Reduced padding a bit */
+    background-color: var(--bg); /* Ensure it follows dark/light mode */
+}
+
+.multiplatform-demo-container {
+    display: flex;
+    position: relative; /* For positioning the button */
+    align-items: center;
+    justify-content: center;
+    min-height: 450px; /* Ensure container has height */
+}
+
+#macbook-animation-container {
+    width: 500px;
+    height: 450px;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden; /* Keep the canvas contained */
+}
+
+#replay {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+/* Re-use dark mode styles */
+body.dark-mode .ct-multiplatform .feature-surface {
+    background: #1a1a1a;
+}
+
+/* Responsive adjustments for the new section */
+@media (max-width: 960px) {
+    .ct-multiplatform .feature-surface {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    .multiplatform-demo-container {
+        order: -1; /* Move the image to the top on mobile */
+    }
+    #macbook-animation-container {
+        width: 100%;
+        max-width: 500px;
+        height: 400px;
+    }
+}
 
 /* ===== Dark Mode ===== */
 body.dark-mode {
-    --bg: #0a0a0a;
+    --bg: #121212;
     --text: #f0f0f0;
     --muted: #a0a0a0;
     --border: rgba(255, 255, 255, 0.1);
-    --glass-bg: rgba(0, 0, 0, 0.5);
-    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-bg: rgba(30, 30, 30, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.15);
+}
+body.dark-mode .ct-btn--secondary {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: var(--border);
 }
 
 body.dark-mode .ct-hero-surface,
@@ -507,4 +575,197 @@ body.dark-mode .feature-surface {
 
 body.dark-mode .ct-hero-title .muted {
     color: #555;
+}
+
+/* ===== About Section ===== */
+.ct-about {
+    padding: 160px 20px;
+    background-color: var(--bg);
+}
+
+.ct-about .feature-surface {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    background: #f0f8ff;
+    box-shadow: var(--shadow);
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.ct-about h2 {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px;
+    color: var(--text);
+}
+.about-content {
+    max-width: 450px;
+}
+
+.about-visual {
+    border-radius: 16px;
+}
+
+.ct-about .feature-sub {
+    max-width: 450px;
+    margin: 0 0 24px;
+    color: var(--muted);
+    font-size: 22px;
+    line-height: 1.6;
+}
+
+.ct-about .feature-detail {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 450px;
+    margin-bottom: 20px;
+}
+
+.ct-about .feature-detail:last-child {
+    margin-bottom: 40px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.team-member {
+    text-align: center;
+}
+
+.team-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #2f7cf5, #23B0FF);
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.team-member h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    color: var(--text);
+}
+
+.team-member p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+/* Dark mode styles for about section */
+body.dark-mode .ct-about .feature-surface {
+    background: #1a1a1a;
+}
+
+@media (max-width: 960px) {
+    .ct-about .feature-surface {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+}
+
+/* ===== Contact Section ===== */
+.ct-contact {
+    padding: 160px 20px;
+    background-color: var(--bg);
+}
+
+.ct-contact .feature-surface {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    background: #f0f8ff;
+    box-shadow: var(--shadow);
+    padding: 60px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Give form a bit more space */
+    align-items: center;
+    gap: 80px;
+}
+
+.ct-contact h2 {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px;
+    color: var(--text);
+}
+
+.contact-content {
+    max-width: 450px;
+}
+
+.contact-form-container {
+    width: 100%;
+}
+
+#contact-form .form-group {
+    margin-bottom: 24px;
+}
+
+#contact-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(35, 176, 255, 0.3);
+}
+
+#contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+#contact-form button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+}
+
+/* Dark mode styles for contact section */
+body.dark-mode .ct-contact .feature-surface {
+    background: #1a1a1a;
+}
+
+@media (max-width: 960px) {
+    .ct-contact .feature-surface {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
 }

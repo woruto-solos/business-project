@@ -252,93 +252,18 @@ function setupScrollAnimation() {
 function setupFeatureDemo() {
     const container = document.getElementById('cube-demo-canvas-container');
     const modeSwitch = document.getElementById('mode-switch');
-    if (!container || !modeSwitch) return;
-
-    // 1. Scene Setup
-    const demoScene = new THREE.Scene();
-    const demoCamera = new THREE.PerspectiveCamera(10, container.clientWidth / container.clientHeight, 0.1, 1000);
-    const demoRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    demoRenderer.setSize(container.clientWidth, container.clientHeight);
-    demoRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    container.appendChild(demoRenderer.domElement);
-
-    // 2. Lighting
-    const demoAmbient = new THREE.AmbientLight(0xffffff, 0.6);
-    demoScene.add(demoAmbient);
-    const demoDirectional = new THREE.DirectionalLight(0xffffff, 1);
-    demoDirectional.position.set(5, 5, 5);
-    demoScene.add(demoDirectional);
-
-    // 3. Cube
-    const cubeSize = 2.5;
-    const cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-    const cubeMaterial = new THREE.MeshStandardMaterial({
-        color: '#2f7cf5',
-        metalness: 0.1,
-        roughness: 0.5
-    });
-    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    demoScene.add(cube);
-
-    // 4. Controls
-    const controls = new OrbitControls(demoCamera, demoRenderer.domElement);
-    controls.enableDamping = true;
-    controls.enableZoom = false;
-    controls.enablePan = false;
-    controls.enabled = false; // Disabled by default
-
-    // 5. Initial "2D" State - Calculate the perfect camera distance
-    // This formula ensures the cube's height perfectly matches the canvas height in the initial view
-    const fovInRadians = (demoCamera.fov * Math.PI) / 180;
-    const cameraDistance = (cubeSize / 2) / Math.tan(fovInRadians / 2);
-    demoCamera.position.z = cameraDistance;
-
-    // 6. Animation Loop for this specific scene
-    function demoAnimate() {
-        requestAnimationFrame(demoAnimate);
-        if (controls.enabled) {
-            controls.update();
-        }
-        demoRenderer.render(demoScene, demoCamera);
-    }
-    demoAnimate();
+    if (!modeSwitch) return;
 
     // 7. Interaction Logic
-    let is3D = false;
-    const timeline = gsap.timeline({ paused: true });
-    timeline
-        .to(demoCamera, { fov: 50, duration: 1, ease: 'power3.inOut' }, 0)
-        .to(demoCamera.position, { z: 5.5, duration: 1, ease: 'power3.inOut' }, 0)
-        .to(cube.rotation, { x: Math.PI * 0.25, y: Math.PI * 0.25, duration: 1, ease: 'power3.inOut' }, 0);
-
     modeSwitch.addEventListener('change', () => {
-        is3D = modeSwitch.checked;
-        if (is3D) {
+        if (modeSwitch.checked) {
             document.body.classList.add('dark-mode');
             gsap.to(scene.background, { r: 0x0a / 255, g: 0x0a / 255, b: 0x0a / 255, duration: 1 });
-            timeline.play();
-            controls.enabled = true;
         } else {
             document.body.classList.remove('dark-mode');
             gsap.to(scene.background, { r: 0xf0 / 255, g: 0xf8 / 255, b: 0xff / 255, duration: 1 });
-            timeline.reverse();
-            controls.enabled = false;
-            // Reset controls and camera to initial state when animation finishes reversing
-            gsap.to(controls.target, { 
-                x: 0, y: 0, z: 0, 
-                duration: 0.5, 
-                onComplete: () => controls.reset() 
-            });
         }
     });
-
-    // Handle resize for this specific canvas
-    const demoResizeObserver = new ResizeObserver(() => {
-        demoCamera.aspect = container.clientWidth / container.clientHeight;
-        demoCamera.updateProjectionMatrix();
-        demoRenderer.setSize(container.clientWidth, container.clientHeight);
-    });
-    demoResizeObserver.observe(container);
 }
 
 // Start the main animation loop and then the intro animation

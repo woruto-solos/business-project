@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Jumpcut</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="ct-header">
+        <div class="ct-container">
+            <a href="index.html" class="ct-brand">Jumpcut</a>
+            <nav class="ct-nav">
+                <ul class="ct-links">
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="ct-actions">
+                <a href="#" class="ct-signin">Sign In</a>
+                <a href="#" class="ct-cta">Download</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="ct-about">
+            <div class="feature-surface">
+                <div class="about-content">
+                    <h2>About Jumpcut</h2>
+                    <p class="feature-detail">Based in the heart of the Bay Area, our mission is to revolutionize the creative process. We believe that editing should be intuitive, not intimidating. That's why we're building Jumpcut, a next-generation video editor that combines cutting-edge AI with a user-friendly interface. Whether you're a seasoned professional or just starting out, our goal is to provide you with the tools you need to bring your vision to life.</p>
+                    <p class="feature-detail">We're committed to a multi-device future, where you can seamlessly switch between your desktop, tablet, and phone without ever losing your creative flow. Your projects, your media, and your inspiration—all in sync, all the time.</p>
+                </div>
+                <div class="about-visual">
+                    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                          <!-- Background gradient -->
+                          <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" style="stop-color:#0a1628;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#000510;stop-opacity:1" />
+                          </radialGradient>
+                          
+                          <!-- Main sphere gradient -->
+                          <radialGradient id="sphereGradient" cx="35%" cy="35%">
+                            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                            <stop offset="30%" style="stop-color:#e0f2ff;stop-opacity:1" />
+                            <stop offset="60%" style="stop-color:#60a5fa;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#1e40af;stop-opacity:0.9" />
+                          </radialGradient>
+                          
+                          <!-- Glow effect -->
+                          <radialGradient id="glowGradient" cx="50%" cy="50%">
+                            <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.6" />
+                            <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:0.3" />
+                            <stop offset="100%" style="stop-color:#1e40af;stop-opacity:0" />
+                          </radialGradient>
+                          
+                          <!-- Inner light gradient -->
+                          <radialGradient id="innerLight" cx="40%" cy="40%">
+                            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9" />
+                            <stop offset="50%" style="stop-color:#bfdbfe;stop-opacity:0.4" />
+                            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0" />
+                          </radialGradient>
+                          
+                          <!-- Reflection gradient -->
+                          <linearGradient id="reflection" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.7" />
+                            <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+                          </linearGradient>
+                          
+                          <!-- Blur filter for glow -->
+                          <filter id="blur">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+                          </filter>
+                          
+                          <!-- Stronger blur for outer glow -->
+                          <filter id="strongBlur">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="30" />
+                          </filter>
+                        </defs>
+                        
+                        <!-- Background -->
+                        <rect width="800" height="800" fill="url(#bgGradient)"/>
+                        
+                        <!-- Outer glow layer -->
+                        <circle cx="400" cy="400" r="280" fill="url(#glowGradient)" filter="url(#strongBlur)" opacity="0.8">
+                          <animate attributeName="r" values="280;300;280" dur="4s" repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <!-- Secondary glow -->
+                        <circle cx="400" cy="400" r="220" fill="url(#glowGradient)" filter="url(#blur)" opacity="0.6">
+                          <animate attributeName="r" values="220;240;220" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <!-- Main morphing sphere - jelly-like wobbling -->
+                        <path fill="url(#sphereGradient)" opacity="0.95">
+                          <animate attributeName="d" 
+                                   values="M400,180 C490,180 565,255 565,345 C565,435 490,510 400,510 C310,510 235,435 235,345 C235,255 310,180 400,180 Z;
+                                           M415,175 C505,185 575,265 570,355 C565,445 485,515 395,510 C305,505 240,425 245,335 C250,245 325,165 415,175 Z;
+                                           M385,175 C475,165 560,235 570,325 C580,415 515,495 425,505 C335,515 250,445 240,355 C230,265 295,185 385,175 Z;
+                                           M400,190 C485,195 555,270 555,355 C555,440 485,510 400,515 C315,520 240,450 235,365 C230,280 305,185 400,190 Z;
+                                           M400,185 C480,190 545,260 550,345 C555,430 490,505 405,510 C320,515 245,445 240,360 C235,275 310,180 400,185 Z;
+                                           M395,180 C485,175 565,245 570,335 C575,425 505,500 415,510 C325,520 250,450 240,360 C230,270 305,185 395,180 Z;
+                                           M405,185 C490,195 560,270 560,355 C560,440 490,510 405,515 C320,520 245,445 240,360 C235,275 320,175 405,185 Z;
+                                           M400,180 C490,180 565,255 565,345 C565,435 490,510 400,510 C310,510 235,435 235,345 C235,255 310,180 400,180 Z"
+                                   dur="7s" repeatCount="indefinite"/>
+                        </path>
+                        
+                        <!-- Inner light/glow -->
+                        <ellipse cx="380" cy="330" rx="90" ry="95" fill="url(#innerLight)" opacity="0.8">
+                          <animate attributeName="rx" values="90;100;90" dur="3s" repeatCount="indefinite"/>
+                          <animate attributeName="ry" values="95;105;95" dur="3.5s" repeatCount="indefinite"/>
+                        </ellipse>
+                        
+                        <!-- Highlight reflection -->
+                        <ellipse cx="360" cy="310" rx="60" ry="80" fill="url(#reflection)" opacity="0.5">
+                          <animate attributeName="opacity" values="0.5;0.7;0.5" dur="2s" repeatCount="indefinite"/>
+                        </ellipse>
+                        
+                        <!-- Small accent highlight -->
+                        <ellipse cx="340" cy="290" rx="25" ry="35" fill="#ffffff" opacity="0.6">
+                          <animate attributeName="opacity" values="0.6;0.8;0.6" dur="1.5s" repeatCount="indefinite"/>
+                        </ellipse>
+                        
+                        <!-- Floating particles around sphere -->
+                        <circle cx="280" cy="280" r="3" fill="#60a5fa" opacity="0.6">
+                          <animate attributeName="cy" values="280;260;280" dur="3s" repeatCount="indefinite"/>
+                          <animate attributeName="opacity" values="0.6;0.9;0.6" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <circle cx="520" cy="320" r="2.5" fill="#bfdbfe" opacity="0.5">
+                          <animate attributeName="cx" values="520;535;520" dur="4s" repeatCount="indefinite"/>
+                          <animate attributeName="opacity" values="0.5;0.8;0.5" dur="4s" repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <circle cx="310" cy="480" r="2" fill="#93c5fd" opacity="0.7">
+                          <animate attributeName="cy" values="480;500;480" dur="3.5s" repeatCount="indefinite"/>
+                          <animate attributeName="opacity" values="0.7;1;0.7" dur="3.5s" repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <circle cx="490" cy="460" r="3.5" fill="#60a5fa" opacity="0.5">
+                          <animate attributeName="cx" values="490;510;490" dur="4.5s" repeatCount="indefinite"/>
+                          <animate attributeName="opacity" values="0.5;0.8;0.5" dur="4.5s" repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <!-- Subtle ring effect -->
+                        <circle cx="400" cy="400" r="190" fill="none" stroke="#60a5fa" stroke-width="1" opacity="0.3">
+                          <animate attributeName="r" values="190;200;190" dur="5s" repeatCount="indefinite"/>
+                          <animate attributeName="opacity" values="0.3;0.5;0.3" dur="5s" repeatCount="indefinite"/>
+                        </circle>
+                      </svg>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
